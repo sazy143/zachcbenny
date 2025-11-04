@@ -5,6 +5,7 @@ import {
   SITE_URL,
   BLOG_HOST,
   DEFAULT_THEME,
+  THEMES,
 } from "@config/site";
 import "@styles/themes.css";
 import ThemeToggle from "@components/ThemeToggle";
@@ -38,9 +39,13 @@ const {
     <script is:inline>
       (function () {
         try {
+          var THEMES = ${JSON.stringify(THEMES)};
+          function isTheme(value) {
+            return typeof value === 'string' && THEMES.includes(value);
+          }
           var qp = new URLSearchParams(location.search).get("theme");
           var stored = localStorage.getItem("theme");
-          var theme = qp || stored || "${DEFAULT_THEME}";
+          var theme = isTheme(qp) ? qp : isTheme(stored) ? stored : "${DEFAULT_THEME}";
 
           function setTheme(t) {
             document.documentElement.setAttribute("data-theme", t);
@@ -67,7 +72,6 @@ const {
           window.addEventListener('mousemove', setMouseVars, { passive: true });
 
           // hotkeys 1/2/3 to toggle themes
-          var THEMES = ['boring', 'neobrutal', 'hyper'];
           window.addEventListener('keydown', function (e) {
             if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.isComposing)) return;
             if (e.key === '1') setTheme(THEMES[0]);
