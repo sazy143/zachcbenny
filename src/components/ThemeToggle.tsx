@@ -1,7 +1,6 @@
 import React from 'react';
 
-const THEMES = ["boring", "neobrutal", "hyper"] as const;
-type Theme = typeof THEMES[number];
+import { DEFAULT_THEME, THEMES, type Theme } from "@config/site";
 
 const THEME_LABELS: Record<Theme, string> = {
   boring: "Boring (1)",
@@ -9,11 +8,16 @@ const THEME_LABELS: Record<Theme, string> = {
   hyper: "Hyper (3)",
 };
 
+const isTheme = (value: string | null): value is Theme =>
+  !!value && (THEMES as readonly string[]).includes(value);
+
 function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'boring';
+  if (typeof window === 'undefined') return DEFAULT_THEME;
   const urlParam = new URLSearchParams(window.location.search).get('theme');
+  if (isTheme(urlParam)) return urlParam;
   const stored = localStorage.getItem('theme');
-  return (urlParam as Theme) || (stored as Theme) || 'boring';
+  if (isTheme(stored)) return stored;
+  return DEFAULT_THEME;
 }
 
 export default function ThemeToggle() {
