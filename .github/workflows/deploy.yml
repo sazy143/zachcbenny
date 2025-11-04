@@ -2,7 +2,7 @@ name: Deploy to S3 + CloudFront
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-deploy:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.0.0
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
@@ -45,4 +45,3 @@ jobs:
         if: success()
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} --paths '/*'
-
