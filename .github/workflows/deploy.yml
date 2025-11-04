@@ -36,15 +36,11 @@ jobs:
       - name: Build
         run: pnpm build
 
-
       - name: Configure AWS creds via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ env.ROLE }}
           aws-region: ${{ env.AWS_REGION }}
-
-      - name: Sanity: whoami
-        run: aws sts get-caller-identity
 
       - name: Sync to S3
         run: aws s3 sync ./dist "s3://${{ env.S3_BUCKET }}" --delete --only-show-errors
