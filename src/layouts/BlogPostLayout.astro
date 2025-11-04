@@ -1,0 +1,14 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { BLOG_HOST } from "@config/site";
+const { title, description } = Astro.props;
+
+const path = Astro.url.pathname;
+const canonical = `https://${BLOG_HOST}${path}`;
+---
+<BaseLayout {title} {description} {canonical}>
+  <article class="nb-card">
+    <slot />
+  </article>
+</BaseLayout>
+

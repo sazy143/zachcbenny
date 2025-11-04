@@ -1,0 +1,351 @@
+﻿---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import projects from "@data/projects.json";
+
+type MainProject = { title: string; description?: string; url?: string };
+type OtherProject = { name: string; description?: string; url: string };
+
+const main = projects.main as MainProject;
+const others = projects.others as Array<OtherProject>;
+---
+
+<BaseLayout>
+  <!-- About -->
+  <section id="about" class="section about">
+    <h2 class="section-title">About</h2>
+    <div class="nb-card about-card">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+        habitant morbi tristique senectus et netus et malesuada fames ac turpis
+        egestas. Integer quis posuere mauris. Curabitur vel nibh in leo pharetra
+        volutpat id id mauris.
+      </p>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam. Eaque ipsa quae ab illo
+        inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+      </p>
+
+      <h3 class="subhead">Skills</h3>
+      <ul class="skills">
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Astro</li>
+        <li>Node.js</li>
+        <li>PostgreSQL</li>
+        <li>GraphQL/REST</li>
+        <li>Testing (Jest/Playwright)</li>
+        <li>CI/CD</li>
+        <li>AWS</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Main project highlight -->
+  <section id="highlight" class="section">
+    <h2 class="section-title">{main.title}</h2>
+    {main.description && (
+      <p class="section-subtitle muted">{main.description}</p>
+    )}
+    <div class="nb-card hyper-hero">
+      <div class="hyper-only sticker sticker-cyan"></div>
+      <div class="hyper-only sticker sticker-pink"></div>
+      <figure class="hero-media">
+        <img src="/membership14.gif" alt="{main.title} feature demo" />
+      </figure>
+      <p>
+        Explore more at <a
+          href="https://membership14.com"
+          target="_blank"
+          rel="noopener noreferrer">membership14.com</a
+        >
+        {main.url && (
+          <>
+            , and the project site here:{" "}
+            <a href={main.url} target="_blank" rel="noopener noreferrer">
+              {main.url}
+            </a>
+            .
+          </>
+        )}
+      </p>
+    </div>
+  </section>
+
+  <!-- Other projects -->
+  <section id="projects" class="section projects-grid">
+    <h2 class="section-title">Projects</h2>
+    {
+      others.map((p, i) => (
+        <div class={`proj-row nb-card ${i % 2 === 1 ? "reverse" : ""}`}>
+          <div class="proj-media">
+            <div class="media-placeholder" aria-hidden="true" />
+          </div>
+          <div class="proj-copy">
+            <h3 style="margin:0">
+              <a
+                class="proj-title"
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {p.name}
+              </a>
+            </h3>
+            {p.description && <p class="muted">{p.description}</p>}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Resume expandable -->
+  <section id="resume" class="section">
+    <h2 class="section-title">Resume</h2>
+    <div class="nb-card">
+      <details>
+        <summary style="cursor:pointer; font-weight:700;">Resume (expand)</summary>
+        <div class="resume-wrap">
+          <iframe src="/Resume.html" title="Resume" loading="lazy"></iframe>
+        </div>
+        <p class="muted" style="margin-top:8px;">
+          If the embed doesn’t load, open directly:
+          <a href="/Resume.html" target="_blank">Resume.html</a>
+        </p>
+      </details>
+    </div>
+  </section>
+  <style>
+    .section {
+      margin-top: 36px;
+    }
+    .section-title {
+      margin: 0 0 8px 0;
+    }
+    .section-subtitle {
+      margin: 4px 0 16px 0;
+    }
+    .section > .nb-card {
+      margin-top: 16px;
+    }
+    .subhead {
+      margin: 16px 0 8px 0;
+    }
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 8px 16px;
+      padding-left: 18px;
+    }
+    .about p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .hero-media {
+      margin: 16px 0 16px 0;
+    }
+    .hero-media img {
+      width: 100%;
+      max-width: 980px;
+      max-height: 420px;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+    .hyper-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hyper-hero > *:not(.sticker) {
+      position: relative;
+      z-index: 3;
+    }
+    .hyper-hero .sticker {
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.9;
+    }
+    .projects-grid {
+      position: relative;
+    }
+    .proj-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .proj-row.reverse {
+      direction: rtl;
+    }
+    .proj-row.reverse > * {
+      direction: ltr;
+    }
+    .proj-media {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .proj-row.reverse .proj-media {
+      align-items: flex-end;
+    }
+    .media-placeholder {
+      width: 70%;
+      max-width: 280px;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      background: var(--muted-bg);
+      border: var(--border-w) solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .proj-row.reverse .media-placeholder {
+      margin-left: auto;
+    }
+    .proj-title {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 3px solid var(--secondary);
+    }
+    .proj-title:hover {
+      background: var(--accent);
+      color: #000;
+    }
+    .proj-copy p {
+      margin: 4px 0 0 0;
+    }
+    .resume-wrap {
+      margin-top: 12px;
+      border: 1px solid var(--surface-3, #3b3b3b);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .resume-wrap iframe {
+      width: 100%;
+      height: 1000px;
+      border: 0;
+      background: transparent;
+    }
+
+    /* Theme-only elements */
+    .hyper-only {
+      display: none;
+    }
+    html[data-theme="hyper"] .hyper-only {
+      display: block;
+    }
+    html[data-theme="hyper"] .sticker {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border: var(--border-w) solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+    }
+    html[data-theme="hyper"] .sticker-cyan {
+      background: linear-gradient(
+        135deg,
+        rgba(0, 240, 255, 0.9),
+        rgba(159, 255, 248, 0.9)
+      );
+      left: -36px;
+      top: -24px;
+      transform: rotate(-6deg);
+    }
+    html[data-theme="hyper"] .sticker-pink {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 30, 190, 0.9),
+        rgba(255, 208, 240, 0.9)
+      );
+      right: -36px;
+      bottom: -36px;
+      transform: rotate(10deg);
+    }
+
+    /* Hyper title treatment */
+    html[data-theme="hyper"] .section-title {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--border);
+    }
+    /* Hyper pulsing grid horizon behind membership section */
+    html[data-theme="hyper"] .hyper-hero::before,
+    html[data-theme="hyper"] .hyper-hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+    }
+    html[data-theme="hyper"] .hyper-hero::before {
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 58, 215, 0.18),
+        rgba(255, 122, 24, 0.18) 60%,
+        transparent 90%
+      );
+    }
+    html[data-theme="hyper"] .hyper-hero::after {
+      bottom: -10%;
+      height: 55%;
+      z-index: 2;
+      background:
+        radial-gradient(
+          60% 100% at 50% 100%,
+          rgba(255, 58, 215, 0.25),
+          rgba(0, 0, 0, 0) 70%
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(41, 255, 255, 0.35) 0 2px,
+          rgba(0, 0, 0, 0) 2px 24px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(41, 255, 255, 0.25) 0 2px,
+          rgba(0, 0, 0, 0) 2px 36px
+        );
+      transform-origin: bottom center;
+      transform: perspective(560px) rotateX(62deg);
+      animation:
+        gridPulse 3s ease-in-out infinite alternate,
+        gridDrift 20s linear infinite;
+    }
+    @keyframes gridPulse {
+      from {
+        filter: brightness(0.9) saturate(1);
+      }
+      to {
+        filter: brightness(1.4) saturate(1.2);
+      }
+    }
+    @keyframes gridDrift {
+      to {
+        background-position:
+          0 -40px,
+          0 -40px,
+          -36px 0;
+      }
+    }
+    @media (max-width: 800px) {
+      .proj-row {
+        grid-template-columns: 1fr;
+      }
+      .proj-row.reverse {
+        direction: ltr;
+      }
+    }
+  </style>
+</BaseLayout>
+
+
+

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { BLOG_HOST } from "@config/site";
+import blogs from "@data/blogs.json";
+
+type Blog = { slug: string; title: string; date: string; summary?: string; path: string };
+const list = (blogs as Blog[]).slice().sort((a, b) => a.date < b.date ? 1 : -1);
+
+const canonical = `https://${BLOG_HOST}/`;
+---
+<BaseLayout title="Blog — Zach Bentsen" canonical={canonical}>
+  <h1 style="margin-top:0">Blog</h1>
+  <ul style="list-style:none; padding:0; margin:0;">
+    {list.map((b) => (
+      <li class="nb-card" style="margin-bottom:14px;">
+        <h3 style="margin:0 0 6px 0;"><a href={b.path}>{b.title}</a></h3>
+        <div class="muted" style="font-size: 14px;">{new Date(b.date).toDateString()}</div>
+        {b.summary && <p style="margin-top: 8px;">{b.summary}</p>}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
+

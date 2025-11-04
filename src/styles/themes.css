@@ -1,0 +1,368 @@
+:root {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+:root,
+html,
+body {
+  height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+/* Boring (minimal baseline) */
+html[data-theme='boring'] {
+  --bg: #f5f6f8;
+  --text: #1a1d21;
+  --primary: #d0d6de;
+  --secondary: #4a5565;
+  --accent: #2d6cdf;
+  --border: #ccd3dc;
+  --muted-bg: #ffffff;
+
+  --radius: 8px;
+  --border-w: 1px;
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+}
+
+html[data-theme='boring'] body {
+  background: var(--bg);
+}
+
+html[data-theme='boring'] .nb-card::before { display: none !important; }
+
+html[data-theme='boring'] .nb-card {
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+html[data-theme='boring'] .nb-button {
+  background: var(--secondary);
+  color: #ffffff;
+  box-shadow: none;
+  transform: translate(0, 0);
+}
+
+html[data-theme='boring'] .nb-button:hover {
+  background: var(--accent);
+  color: var(--text);
+}
+
+html[data-theme='boring'] .nb-nav a:hover {
+  border-color: var(--secondary);
+  background: rgba(45, 108, 223, 0.12);
+}
+
+/* Neobrutal */
+html[data-theme='neobrutal'] {
+  --bg: #fff3c4;         /* vibrant paper */
+  --text: #0a0a0a;
+  --primary: #00f0ff;    /* neon cyan */
+  --secondary: #ff1ebe;  /* hotter pink */
+  --accent: #ffef00;     /* neon lemon */
+  --border: #000000;
+  --muted-bg: #fffdf4;   /* card surface */
+
+  --radius: 14px;
+  --border-w: 5px;
+  --shadow: 12px 12px 0 #000;
+}
+
+html[data-theme='neobrutal'] {
+  background:
+    radial-gradient(360px 320px at 12% 15%, rgba(255, 30, 190, 0.25), transparent 72%),
+    radial-gradient(420px 360px at 88% 12%, rgba(0, 240, 255, 0.22), transparent 70%),
+    repeating-linear-gradient(135deg, rgba(10, 10, 10, 0.08) 0 14px, transparent 14px 28px),
+    linear-gradient(180deg, #fff3c4 0%, #ffe9fd 50%, #c2f6ff 100%);
+  background-attachment: fixed, fixed, fixed, fixed;
+}
+
+html[data-theme='neobrutal'] body {
+  background: transparent;
+}
+
+html[data-theme='neobrutal'] body::before,
+html[data-theme='neobrutal'] body::after {
+  content: ""; position: fixed; width: 320px; height: 320px; border: 5px solid #000; border-radius: 28px;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.85);
+  z-index: -1; pointer-events: none;
+}
+html[data-theme='neobrutal'] body::before {
+  top: 14%; left: -80px;
+  background: linear-gradient(135deg, #00f0ff 0%, #ffe600 100%);
+}
+html[data-theme='neobrutal'] body::after {
+  bottom: 12%; right: -90px;
+  background: linear-gradient(135deg, #ff1ebe 0%, #00f0ff 100%);
+  transform: rotate(-6deg);
+}
+
+html[data-theme='neobrutal'] .nb-card {
+  border-width: 5px;
+  box-shadow: 14px 14px 0 #000;
+}
+
+html[data-theme='neobrutal'] .section-title {
+  display: inline-block;
+  padding: 6px 18px;
+  background: var(--accent);
+  border: 5px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  transform: rotate(-1.5deg);
+}
+
+html[data-theme='neobrutal'] .section-title + .section-subtitle {
+  transform: rotate(-0.2deg);
+}
+
+html[data-theme='neobrutal'] .section > .nb-card {
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 240, 255, 0.12) 0 14px, rgba(255, 30, 190, 0.05) 14px 28px),
+    var(--muted-bg);
+}
+
+html[data-theme='neobrutal'] .nb-button {
+  background: var(--primary);
+  border-width: 5px;
+  box-shadow: 8px 8px 0 #000;
+  transform: translate(-4px, -4px);
+}
+
+html[data-theme='neobrutal'] .nb-button:hover {
+  transform: translate(0, 0);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: clip; /* prevent stray full-bleed scroll */
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.nb-card {
+  background: var(--muted-bg);
+  border: var(--border-w) solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.nb-button {
+  display: inline-block;
+  padding: 12px 16px;
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: #000;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transform: translate(-2px, -2px);
+}
+
+.nb-button:hover {
+  transform: translate(0, 0);
+}
+
+.nb-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nb-nav a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.nb-nav a:hover {
+  border-color: var(--secondary);
+  background: var(--accent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.muted {
+  color: #666;
+}
+
+/* Hyper theme: loud colors, overlapping shapes, animated accents */
+html[data-theme='hyper'] {
+  /* Neon/TRON palette */
+  --text: #e8f6ff;
+  --primary: #00f0ff;  /* cyan */
+  --secondary: #ff3ad7; /* magenta */
+  --accent: #ffe600;   /* acid yellow */
+  --orange: #ff7a18;   /* neon orange */
+  --border: #29ffff;   /* bright cyan border */
+  --muted-bg: rgba(12, 24, 48, 0.92);
+
+  --radius: 16px;
+  --border-w: 6px;
+  --shadow: 0 0 0 4px rgba(41,255,255,0.35), 0 0 32px rgba(41,255,255,0.22);
+}
+
+/* Dark neon grid + gradient wash (fixed so it never resets) */
+html[data-theme='hyper'] {
+  background:
+    radial-gradient(60vw 60vh at 10% -10%, rgba(255,58,215,0.18), transparent 60%),
+    radial-gradient(50vw 50vh at 110% 110%, rgba(0,240,255,0.18), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 32px),
+    linear-gradient(180deg, #070a17 0%, #0a1630 50%, #0b2132 100%);
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+  color: var(--text);
+}
+
+html[data-theme='hyper'] .nb-nav a:hover {
+  background: var(--accent);
+  border-color: var(--secondary);
+}
+
+/* subtle wobble for buttons on hyper */
+html[data-theme='hyper'] .nb-button:hover {
+  transform: translate(-1px, -1px) rotate(-1deg);
+}
+
+/* psycho accents */
+@keyframes hyperStripe {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 100px 0, 0 0; }
+}
+html[data-theme='hyper'] .nb-card {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 239, 0, 0.06) 0 12px, rgba(0, 240, 255, 0.06) 12px 24px),
+    var(--muted-bg);
+  animation:
+    hyperStripe 12s linear infinite,
+    hyperGlow 6s ease-in-out infinite;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 1s ease;
+}
+
+@keyframes hyperGlow {
+  0% {
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.35), 0 0 0 2px rgba(0, 240, 255, 0.2);
+    border-color: rgba(0, 240, 255, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(255, 58, 215, 0.45), 0 0 0 2px rgba(255, 58, 215, 0.25);
+    border-color: rgba(255, 58, 215, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(255, 230, 0, 0.4), 0 0 0 2px rgba(255, 230, 0, 0.2);
+    border-color: rgba(255, 230, 0, 0.85);
+  }
+}
+
+html[data-theme='hyper'] .nb-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 0 36px rgba(255, 58, 215, 0.5);
+}
+
+/* Neon side rails */
+html[data-theme='hyper'] body::before,
+html[data-theme='hyper'] body::after {
+  content: ""; position: fixed; top: 0; bottom: 0; width: 18px; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(180deg, var(--secondary), var(--primary)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='200' viewBox='0 0 60 200'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23ff3ad7'/><stop offset='100%' stop-color='%23ff7a18'/></linearGradient><linearGradient id='fr' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%2300f0ff'/><stop offset='50%' stop-color='%23ff3ad7'/><stop offset='100%' stop-color='%2300f0ff'/></linearGradient></defs><g fill='url(%23fr)' stroke='%2300f0ff' stroke-width='2.5' stroke-linejoin='round'><path d='M30 118 L6 92 L0 96 L24 132 Z'/><path d='M30 118 L54 88 L60 90 L32 140 Z'/><path d='M30 110 L10 70 L6 64 L30 102 Z'/><path d='M30 110 L54 70 L58 62 L36 108 Z'/></g><path d='M30 188 C26 140 32 124 38 104 L26 104 C20 124 18 140 20 188 Z' fill='url(%23g)' stroke='%2300f0ff' stroke-width='3'/></svg>");
+  background-repeat: no-repeat, repeat-y;
+  background-size: 100% 100%, 46px 220px;
+  background-position: center, 0 0;
+  box-shadow: 0 0 26px 8px rgba(41,255,255,0.35);
+  animation: railScroll 18s linear infinite;
+}
+@keyframes railScroll { to { background-position: center, 0 -220px; } }
+html[data-theme='hyper'] body::before { left: 8px; }
+html[data-theme='hyper'] body::after {
+  right: 8px;
+  /* flip the palm color bias on the right rail */
+  transform: scaleX(-1);
+}
+
+@keyframes starDrift {
+  to { background-position: 220px 260px, -180px 200px, 160px -240px, -160px 140px, 120px -180px; }
+}
+
+@keyframes starTwinkle {
+  0% { opacity: 0.45; filter: brightness(0.9); }
+  50% { opacity: 0.7; filter: brightness(1.25); }
+  100% { opacity: 0.52; filter: brightness(1); }
+}
+
+@keyframes sunSlices {
+  from { background-position: 0 0, center; }
+  to { background-position: 0 -36px, center; }
+}
+
+@keyframes scanPulse {
+  0% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.18; }
+}
+
+/* Hyper parallax overlay (sun + palms + effects) */
+html[data-theme='hyper'] .hyper-parallax { position: fixed; inset:0; pointer-events:none; z-index: 0; }
+html[data-theme='hyper'] .hyper-parallax .stars { position: fixed; inset:0; z-index: -2; background:
+    radial-gradient(2.2px 2.2px at 8% 18%, rgba(255,234,0,0.9), transparent 60%),
+    radial-gradient(2px 2px at 32% 72%, rgba(0,240,255,0.8), transparent 60%),
+    radial-gradient(1.8px 1.8px at 58% 26%, rgba(255,58,215,0.8), transparent 60%),
+    radial-gradient(1.6px 1.6px at 78% 52%, rgba(255,255,255,0.9), transparent 55%),
+    radial-gradient(1.2px 1.2px at 92% 34%, rgba(255,188,66,0.9), transparent 50%);
+  background-size: 420px 420px, 520px 520px, 640px 640px, 760px 760px, 880px 880px;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  animation: starDrift 45s linear infinite alternate, starTwinkle 4s ease-in-out infinite;
+}
+html[data-theme='hyper'] .hyper-parallax .sun {
+  position: fixed; right: -140px; top: -40px; width: 360px; height: 360px; border-radius: 50%;
+  background:
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0 18px, rgba(0,0,0,0.18) 18px 22px, rgba(0, 0, 0, 0) 22px 34px),
+    radial-gradient(circle at 50% 60%, rgba(255,234,0,0.92), rgba(255,122,24,0.92) 42%, rgba(255,58,215,0.82) 74%, rgba(0,0,0,0) 76%);
+  background-position: 0 0, center;
+  box-shadow: 0 0 80px rgba(255,234,0,0.4), 0 0 120px rgba(255,58,215,0.35);
+  filter: saturate(120%);
+  transform: translateX(calc(var(--mx, 0) * 30px)) translateY(calc(var(--scrollY, 0) * -0.03 + var(--my, 0) * -18px));
+  animation: sunSlices 14s ease-in-out infinite alternate;
+  z-index: -1;
+}
+html[data-theme='hyper'] .hyper-parallax .palm {
+  position: fixed; bottom: -20px; width: 300px; height: 320px; z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 260'><defs><linearGradient id='trunk' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23ff7a18'/><stop offset='100%' stop-color='%23240c3c'/></linearGradient><linearGradient id='fronds' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%2300f0ff'/><stop offset='45%' stop-color='%23ff3ad7'/><stop offset='100%' stop-color='%2300b3ff'/></linearGradient><filter id='glow'><feGaussianBlur stdDeviation='1.4' result='blur'/><feMerge><feMergeNode in='blur'/><feMergeNode in='SourceGraphic'/></feMerge></filter></defs><g filter='url(%23glow)' stroke='%23ffe600' stroke-width='4' stroke-linejoin='round'><path fill='url(%23fronds)' d='M126 120 L194 90 L218 96 L142 138 Z'/><path fill='url(%23fronds)' d='M120 110 L174 56 L214 50 L136 122 Z'/><path fill='url(%23fronds)' d='M112 118 L64 70 L12 72 L100 138 Z'/><path fill='url(%23fronds)' d='M120 130 L28 100 L0 112 L118 156 Z'/></g><path fill='url(%23trunk)' stroke='%2300f0ff' stroke-width='5' stroke-linejoin='round' d='M108 248 L128 144 L110 140 L150 38 L132 34 L100 134 L86 110 L44 114 L98 162 L76 248 Z'/></svg>");
+  background-size: contain; background-repeat: no-repeat;
+  opacity: 0.78;
+  filter: drop-shadow(0 0 28px rgba(41,255,255,.45));
+}
+html[data-theme='hyper'] .hyper-parallax .palm.left { left: 32px; transform-origin: bottom center; transform: translateX(calc(var(--mx, 0) * -30px)) translateY(calc(var(--scrollY, 0) * 0.05 + var(--my, 0) * 14px)); }
+html[data-theme='hyper'] .hyper-parallax .palm.right { right: 32px; transform-origin: bottom center; transform: scaleX(-1) translateX(calc(var(--mx, 0) * -30px)) translateY(calc(var(--scrollY, 0) * 0.08 + var(--my, 0) * 18px)); }
+html[data-theme='hyper'] .hyper-parallax .scanlines { position: fixed; inset:0; z-index: 30; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.04) 0 2px, rgba(0,0,0,0) 2px 4px); mix-blend-mode: screen; opacity: 0.22; animation: scanPulse 6s linear infinite; }
+html[data-theme='hyper'] .hyper-parallax .vignette { position: fixed; inset:-4%; z-index: 40; border-radius: 16% / 12%; box-shadow: inset 0 0 160px rgba(0,0,0,0.65); pointer-events:none; mix-blend-mode: multiply; opacity: 0.7; }
+
+/* Orange underline accent on headings (hyper) */
+html[data-theme='hyper'] .section-title {
+  position: relative;
+  background-image: linear-gradient(90deg, var(--secondary), var(--primary));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 2px var(--border);
+}
+html[data-theme='hyper'] .section-title::after {
+  content: ""; position: absolute; left: 0; bottom: -6px; height: 6px; width: 0%; background: linear-gradient(90deg, var(--orange), var(--secondary)); box-shadow: 0 0 18px rgba(255,122,24,0.5); transition: width .35s ease; }
+html[data-theme='hyper'] .section-title:hover::after { width: 100%; }

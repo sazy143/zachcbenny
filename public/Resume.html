@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Resume — Zachary Bentsen</title>
+<style>
+  /* ---------- Base & print ---------- */
+  @page { size: Letter; margin: 0.6in; }
+  :root {
+    --text: #0a0a0a;
+    --muted: #4a4a4a;
+    --accent: #0e5a3a;
+  }
+  html, body { padding:0; margin:0; }
+  body {
+    font: 11pt/1.35 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.25); }
+  h1, h2 { margin:0; }
+  .page { max-width: 8.5in; margin: 0 auto; padding: 0.1in 0.5in; }
+
+  /* ---------- Header ---------- */
+  .name { text-align: center; font-weight: 700; letter-spacing: .2px; font-size: 20pt; margin-bottom: 6pt; }
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* left | center | right */
+    align-items: center;
+    column-gap: 12pt;
+    font-size: 10.5pt;
+    color: var(--muted);
+    margin-bottom: 10pt;
+  }
+  .contact .left { justify-self: start; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .contact .center { justify-self: center; white-space: nowrap; }
+  .contact .right { justify-self: end; white-space: nowrap; }
+
+  /* ---------- Summary ---------- */
+  .summary { margin: 10pt 0 12pt; color: var(--text); text-align: center; }
+
+  /* ---------- Sections ---------- */
+  .sec { margin-top: 12pt; }
+  .sec__title {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    font-size: 10pt;
+    padding-bottom: 2pt;
+    border-bottom: 1px solid #cfcfcf;
+    color: var(--accent);
+  }
+
+  /* ---------- Experience rows ---------- */
+  .role {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 10pt;
+    margin-top: 6pt;
+  }
+  .role__meta { font-weight: 600; }
+  .role__where { color: var(--muted); font-weight: 500; }
+  .role__dates { color: var(--muted); white-space: nowrap; }
+
+  /* ---------- Bullets (no hanging indent) ---------- */
+  ul.bullets { list-style: none; margin: 4pt 0 0 0; padding: 0; }
+ul.bullets li {
+  display: grid;
+  grid-template-columns: 10pt 1fr; /* marker | text */
+  column-gap: 6pt;
+  align-items: start;
+  margin: 2pt 0;
+}
+ul.bullets li::before {
+  content: "•";
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+  /* ---------- Tags (skills) ---------- */
+  .tags { display: flex; flex-wrap: wrap; gap: 6pt 8pt; margin-top: 6pt; }
+  .tag {
+    border: 1px solid #d9d9d9;
+    padding: 2pt 6pt;
+    border-radius: 4pt;
+    font-size: 9.5pt;
+    color: #222;
+    white-space: nowrap;
+  }
+
+  /* ---------- Spacing tweaks for print density ---------- */
+  .tight { margin-top: 2pt; }
+</style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="name">Zachary Bentsen</h1>
+    <div class="contact">
+      <div class="left"><a>Redacted</a></div>
+      <div class="center">Redacted</div>
+      <div class="right">Austin, TX</div>
+    </div>
+
+    <section class="summary">
+      Versatile software engineer with 6+ years delivering production systems for large U.S. companies; ships reliable, scalable services and front-ends used by hundreds of thousands of users.
+    </section>
+
+    <section class="sec">
+      <div class="sec__title">Work Experience</div>
+
+      <div class="role">
+        <div class="role__meta">
+          <span>Founder / Lead Engineer</span> · <span class="role__where">Self-employed (<a href="https://membership14.com/">https://membership14.com/</a>) — Remote</span>
+        </div>
+        <div class="role__dates">Jul 2025 - Present</div>
+      </div>
+      <ul class="bullets">
+        <li style="list-style: none;">Built and Launched a production web app to enable open source membership information sharing. </li>
+        <li>Designed REST API to <100 ms p95 (C#/.NET 9, EF Core, PostgreSQL, Docker).</li>
+        <li>Implemented custom token auth with layered encryption/hashing and server-rotated refresh tokens; seamless multi-window sessions (JWT, HttpOnly/SameSite).</li>
+        <li>Built tiered search (exact title → Levenshtein-fuzzy → description) with autocomplete and cursor-based infinite scroll (Postgres FTS, pg_trgm).</li>
+        <li>Created a consistent, scalable MUI design system with a no-reload light/dark mode for rapid, on-brand development (React, TypeScript, MUI).</li>
+        <li>Architected a production React/.NET/Postgres stack with global CDN and TLS on AWS for sub-$10/month (S3/CloudFront, EC2/VPC, Docker).</li>
+    </ul>
+
+      <div class="role">
+        <div class="role__meta">
+          <span>Software Engineer</span> · <span class="role__where">SHI — Austin, TX</span>
+        </div>
+        <div class="role__dates">Nov 2021 – Jan 2025</div>
+      </div>
+      <ul class="bullets">
+        <li>Closed 100% of assigned defects within SLA and routinely took overflow; accelerated root-cause and fixes via disciplined repro/trace, structured logs, debuggers, and production monitoring.</li>
+        <li>Designed and built a new ticket-search platform and executed a zero-downtime cutover from SQL to Elasticsearch; reduced API search latency 70–99% for thousands of customers.</li>
+        <li>Co-designed and developed a widget framework enabling custom dashboards with hundreds of widgets; cut time-to-new-metric from weeks to days.</li>
+        <li>Led the upgrade of 10+ services to .NET 8/C# 11 (LTS); standardized pipelines and dependencies, improving performance, security, and maintainability.</li>
+      </ul>
+
+      <div class="role">
+        <div class="role__meta">
+          <span>Full Stack Developer</span> · <span class="role__where">LT3 ATG — Calgary, AB</span>
+        </div>
+        <div class="role__dates">Jan 2020 – Nov 2021</div>
+      </div>
+      <ul class="bullets">
+        <li>Operated and optimized data pipelines/services managing billions of records for physical assets; ensured accurate, auditable payouts of tens of thousands of dollars daily with zero lost funds.</li>
+        <li>Drove requirements intake to delivery: distilled stakeholder needs into clear specs and tickets, prioritized the backlog, and shipped features on schedule with documented acceptance criteria.</li>
+      </ul>
+    </section>
+    
+
+    <section class="sec">
+      <div class="sec__title">Skills</div>
+      <div class="tags">
+        <span class="tag">C#</span>
+        <span class="tag">Javascript / Typescript</span>
+        <span class="tag">Python</span>
+        <span class="tag">SQL (Postgres, MS)</span>
+        <span class="tag">.NET</span>
+        <span class="tag">EF Core</span>
+        <span class="tag">React</span>
+        <span class="tag">MUI</span>
+        <span class="tag">Docker</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Azure</span>
+        <span class="tag">Auth</span>
+        <span class="tag">GIT</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">Testing</span>
+        <span class="tag">AI</span>
+      </div>
+    </section>
+
+
+    <section class="sec">
+      <div class="sec__title">Certifications</div>
+      <div class="tags">
+        <span class="tag">AZ-204 (Azure Certified Developer)</span>
+        <span class="tag">SHI War College (Leadership)</span>
+        <span class="tag">Agile Foundations</span>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec__title">Education</div>
+      <div class="role">
+        <div class="role__meta">
+          <span>University of British Columbia</span> · <span class="role__where">BSc Computer Science</span>
+        </div>
+        <div class="role__dates">2019</div>
+      </div>
+    </section>
+
+    <!-- Add more sections as needed: Projects, Education -->
+  </main>
+</body>
+</html>

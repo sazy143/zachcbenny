@@ -1,0 +1,30 @@
+﻿{
+  "main": {
+    "title": "Membership",
+    "description": "A membership platform - details forthcoming.",
+    "url": "https://membership14.com"
+  },
+  "others": [
+    {
+      "name": "Project One",
+      "description": "Placeholder public repo.",
+      "url": "https://github.com/zachcbenny/project-one"
+    },
+    {
+      "name": "Project Two",
+      "description": "Placeholder public repo.",
+      "url": "https://github.com/zachcbenny/project-two"
+    },
+    {
+      "name": "Project Three",
+      "description": "Placeholder public repo.",
+      "url": "https://github.com/zachcbenny/project-three"
+    },
+    {
+      "name": "Project Four",
+      "description": "Placeholder public repo.",
+      "url": "https://github.com/zachcbenny/project-four"
+    }
+  ]
+}
+
