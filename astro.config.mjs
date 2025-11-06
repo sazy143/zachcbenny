@@ -5,7 +5,10 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://zachcbenny.com',
   output: 'static',
+  trailingSlash: 'never',
+  build: {
+    format: 'file',
+  },
   integrations: [react()],
   prefetch: { prefetchAll: true },
 });
-

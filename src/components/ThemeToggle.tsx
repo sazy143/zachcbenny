@@ -46,6 +46,7 @@ export default function ThemeToggle() {
           key={t}
           className="nb-button"
           style={{ background: theme === t ? 'var(--secondary)' : 'var(--primary)' }}
+          data-theme-button={t}
           onClick={() => setTheme(t)}
         >
           {THEME_LABELS[t]}

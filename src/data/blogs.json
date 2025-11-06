@@ -4,14 +4,13 @@
     "title": "Hello, World",
     "date": "2025-01-01",
     "summary": "A sample Markdown post to get started.",
-    "path": "/blog/first-post"
+    "path": "/blog/first-post.html"
   },
   {
     "slug": "raw-html-post",
     "title": "Raw HTML Sample",
     "date": "2025-01-02",
     "summary": "Demonstrates HTML-based posts.",
-    "path": "/blog/raw-html-post"
+    "path": "/blog/raw-html-post.html"
   }
 ]
-
