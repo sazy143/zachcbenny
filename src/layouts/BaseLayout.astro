@@ -124,12 +124,13 @@ const blogHref = "/blog.html";
         } catch (e) {}
       })();
     </script>
-  </head>
-  <body>
-    <header class="container" style="padding-bottom: 0;">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="container site-header">
       <nav class="nb-nav">
-        <a href="/" style="font-weight: 700; font-size: 18px;">zachcbenny</a>
-        <div style="display:flex; gap:16px; align-items:center;">
+        <a href="/" class="nb-brand">zachcbenny</a>
+        <div class="nb-nav-links">
           <a href="/#about">About</a>
           <a href="/#projects">Projects</a>
           <a href={blogHref}>Blog</a>
@@ -143,15 +144,16 @@ const blogHref = "/blog.html";
     <footer class="container" style="padding-top:0;">
       <p class="muted">&copy; {new Date().getFullYear()} Zach Bentsen</p>
     </footer>
-    <!-- Hyper theme parallax overlay (decorative) -->
-    <div class="hyper-only hyper-parallax" aria-hidden="true">
-      <div class="stars"></div>
-      <div class="sun"></div>
-      <div class="palm left"></div>
-      <div class="palm right"></div>
-      <div class="scanlines"></div>
-      <div class="vignette"></div>
-    </div>
-  </body>
-  
+  </div>
+  <!-- Hyper theme parallax overlay (decorative) -->
+  <div class="hyper-only hyper-parallax" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="sun"></div>
+    <div class="palm left"></div>
+    <div class="palm right"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+  </div>
+</body>
+
 </html>

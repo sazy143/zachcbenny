@@ -9,13 +9,15 @@ const list = (blogs as Blog[]).slice().sort((a, b) => (a.date < b.date ? 1 : -1)
 const canonical = `https://${BLOG_HOST}/blog.html`;
 ---
 <BaseLayout title="Blog - Zach Bentsen" canonical={canonical}>
-  <h1 style="margin-top:0">Blog</h1>
-  <ul style="list-style:none; padding:0; margin:0;">
+  <h1 class="page-title">Blog</h1>
+  <ul class="blog-list">
     {list.map((b) => (
-      <li class="nb-card" style="margin-bottom:14px;">
-        <h3 style="margin:0 0 6px 0;"><a href={b.path}>{b.title}</a></h3>
-        <div class="muted" style="font-size: 14px;">{new Date(b.date).toDateString()}</div>
-        {b.summary && <p style="margin-top: 8px;">{b.summary}</p>}
+      <li class="nb-card blog-card">
+        <h3 class="blog-card__title">
+          <a href={b.path}>{b.title}</a>
+        </h3>
+        <div class="muted blog-card__meta">{new Date(b.date).toDateString()}</div>
+        {b.summary && <p class="blog-card__summary">{b.summary}</p>}
       </li>
     ))}
   </ul>

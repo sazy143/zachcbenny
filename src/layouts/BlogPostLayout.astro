@@ -10,7 +10,10 @@ const path = rawPath.endsWith(".html")
 const canonical = `https://${BLOG_HOST}${path}`;
 ---
 <BaseLayout {title} {description} {canonical}>
-  <article class="nb-card">
-    <slot />
-  </article>
+  <div class="blog-post-layout">
+    <a href="/blog.html" class="nb-button blog-back-link">Back to Blog</a>
+    <article class="nb-card">
+      <slot />
+    </article>
+  </div>
 </BaseLayout>
