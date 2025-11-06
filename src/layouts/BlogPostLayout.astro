@@ -3,12 +3,17 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { BLOG_HOST } from "@config/site";
 const { title, description } = Astro.props;
 
-const path = Astro.url.pathname;
+const rawPath = Astro.url.pathname;
+const path = rawPath.endsWith(".html")
+  ? rawPath
+  : `${rawPath.replace(/\/$/, "")}.html`;
 const canonical = `https://${BLOG_HOST}${path}`;
 ---
 <BaseLayout {title} {description} {canonical}>
-  <article class="nb-card">
-    <slot />
-  </article>
+  <div class="blog-post-layout">
+    <a href="/blog.html" class="nb-button blog-back-link">Back to Blog</a>
+    <article class="nb-card">
+      <slot />
+    </article>
+  </div>
 </BaseLayout>
-
