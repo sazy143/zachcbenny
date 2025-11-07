@@ -3,7 +3,12 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import projects from "@data/projects.json";
 
 type MainProject = { title: string; description?: string; url?: string };
-type OtherProject = { name: string; description?: string; url: string };
+type OtherProject = {
+  name: string;
+  description?: string;
+  url: string;
+  image?: string;
+};
 
 const main = projects.main as MainProject;
 const others = projects.others as Array<OtherProject>;
@@ -15,59 +20,55 @@ const others = projects.others as Array<OtherProject>;
     <h2 class="section-title">About</h2>
     <div class="nb-card about-card">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-        habitant morbi tristique senectus et netus et malesuada fames ac turpis
-        egestas. Integer quis posuere mauris. Curabitur vel nibh in leo pharetra
-        volutpat id id mauris.
+        Who is zachcbenny or better yet Zachary Bentsen. You could describe me
+        by my career as a software engineer, maybe by my hobbies: cooking,
+        running, and eating, perhaps my passions: golf, traveling, and sleeping.
+        Am I then just a conglomarate of things? Perhaps I am more than that.
+        Let's tie in my interests: problem solving, and connecting with people,
+        friends and family. My emotions and outlook on life: happy, carefree,
+        and excited for each new day. I think we now have a clearer picture of
+        who I am, and how I find my purpose in life.
       </p>
       <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-        doloremque laudantium, totam rem aperiam. Eaque ipsa quae ab illo
-        inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+        If you are a here from a job application I submitted please look into my
+        projects below or even my resume again at the bottom. However if you
+        find your interest more peeked into individual problems or the man
+        behind the site check out my blog where I post anything from technical
+        solutions to travel stories to ramblings of my inner monologue. Enjoy!
       </p>
-
-      <h3 class="subhead">Skills</h3>
-      <ul class="skills">
-        <li>TypeScript</li>
-        <li>React</li>
-        <li>Astro</li>
-        <li>Node.js</li>
-        <li>PostgreSQL</li>
-        <li>GraphQL/REST</li>
-        <li>Testing (Jest/Playwright)</li>
-        <li>CI/CD</li>
-        <li>AWS</li>
-      </ul>
     </div>
   </section>
 
   <!-- Main project highlight -->
-  <section id="highlight" class="section">
+  <section id="highlight" class="section about">
     <h2 class="section-title">{main.title}</h2>
-    {main.description && (
-      <p class="section-subtitle muted">{main.description}</p>
-    )}
+
     <div class="nb-card hyper-hero">
+      {
+        main.description && (
+          <p style="text-align: center;">{main.description}</p>
+        )
+      }
       <div class="hyper-only sticker sticker-cyan"></div>
       <div class="hyper-only sticker sticker-pink"></div>
       <figure class="hero-media">
-        <img src="/membership14.gif" alt={`${main.title} feature demo`} />
-      </figure>
-      <p>
-        Explore more at <a
-          href="https://membership14.com"
-          target="_blank"
-          rel="noopener noreferrer">membership14.com</a
+        <video src="/membershipHighlights.mp4" autoplay loop>
+          Your browser does not support the video tag.</video
         >
-        {main.url && (
-          <>
-            , and the project site here:{" "}
-            <a href={main.url} target="_blank" rel="noopener noreferrer">
+      </figure>
+      <p style="text-align: center;">
+        {
+          main.url && (
+            <a
+              class="nb-brand"
+              href={main.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {main.url}
             </a>
-            .
-          </>
-        )}
+          )
+        }
       </p>
     </div>
   </section>
@@ -79,7 +80,13 @@ const others = projects.others as Array<OtherProject>;
       others.map((p, i) => (
         <div class={`proj-row nb-card ${i % 2 === 1 ? "reverse" : ""}`}>
           <div class="proj-media">
-            <div class="media-placeholder" aria-hidden="true" />
+            <img
+              class="media-placeholder"
+              width="200"
+              height="200"
+              aria-hidden="true"
+              src={p.image}
+            />
           </div>
           <div class="proj-copy">
             <h3 style="margin:0">
@@ -104,7 +111,9 @@ const others = projects.others as Array<OtherProject>;
     <h2 class="section-title">Resume</h2>
     <div class="nb-card">
       <details>
-        <summary style="cursor:pointer; font-weight:700;">Resume (expand)</summary>
+        <summary style="cursor:pointer; font-weight:700;"
+          >Resume (expand)</summary
+        >
         <div class="resume-wrap">
           <iframe src="/Resume.html" title="Resume" loading="lazy"></iframe>
         </div>
@@ -143,14 +152,7 @@ const others = projects.others as Array<OtherProject>;
     }
     .hero-media {
       margin: 16px 0 16px 0;
-    }
-    .hero-media img {
-      width: 100%;
-      max-width: 980px;
-      max-height: 420px;
-      height: auto;
-      display: block;
-      border-radius: 12px;
+      text-align: center;
     }
     .hyper-hero {
       position: relative;
@@ -346,6 +348,3 @@ const others = projects.others as Array<OtherProject>;
     }
   </style>
 </BaseLayout>
-
-
-
