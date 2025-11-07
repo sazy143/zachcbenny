@@ -1,29 +1,27 @@
 ﻿{
   "main": {
     "title": "Membership",
-    "description": "A membership platform - details forthcoming.",
+    "description": "Membership was an idea inspired by the cryptic pricing around the golf industry and membership pricing. I soon realized that this epidemic is widespread throughout industries trying to convey a sense of exclusivity. While maybe this makes sense for spyglass with its invite only and \"buy in\" in the 100's of thousands when your local semi-private that mows its greens 2-3 times a week tells you to inquire with in and spend days waiting for pricing information from some \"membership liason\" the point is lost. Membership allows individuals to contribute pricing information however they obtained it to share with the general public creating a well of knowledge for the world!",
     "url": "https://membership14.com"
   },
   "others": [
     {
-      "name": "Project One",
-      "description": "Placeholder public repo.",
-      "url": "https://github.com/zachcbenny/project-one"
+      "name": "Monte Carlo Tree Search (Game of Amazons)",
+      "description": "Built a fully generic Monte Carlo Tree Search engine in Java capable of learning optimal strategies through self-play. The system applies core AI concepts—selection, expansion, simulation, and backpropagation—to evaluate thousands of possible outcomes in real time. Designed with a modular architecture, it can be adapted to any two-player, turn-based game with minimal code changes. Demonstrated by mastering the complex board game *Amazons*, where it intelligently narrows millions of move possibilities into a winning strategy.",
+      "url": "https://github.com/sazy143/Monte-Carlo-TS",
+      "image": "/MCTS.png"
     },
     {
-      "name": "Project Two",
-      "description": "Placeholder public repo.",
-      "url": "https://github.com/zachcbenny/project-two"
+      "name": "Nueral Network Esports Predictor",
+      "description": "AILolGamble transforms raw match data into refined “Silver” and “Gold” datasets, stripping away noise and preparing clean input for model training. Built in Python with TensorFlow, it trains multiple neural networks to forecast match winners and total kills, then runs predictions through streamlined scripts inside a virtual environment. Every stage—from preprocessing to inference—is automated for reproducibility, producing fast, data-driven insights into competitive gameplay. It’s a compact, full-stack machine learning pipeline built entirely around one goal: turning chaotic esports data into actionable prediction intelligence.",
+      "url": "https://github.com/sazy143/AILolGamble",
+      "image": "/AILolGamble.png"
     },
     {
-      "name": "Project Three",
-      "description": "Placeholder public repo.",
-      "url": "https://github.com/zachcbenny/project-three"
-    },
-    {
-      "name": "Project Four",
-      "description": "Placeholder public repo.",
-      "url": "https://github.com/zachcbenny/project-four"
+      "name": "Discord Bot (Music)",
+      "description": "Discord Bot (BeansBot) is a lightweight Discord music bot built in Node.js that streams audio directly from YouTube. It uses Google’s YouTube Data API to find the most relevant track based on user input, then manages playback through Discord’s voice channels. The bot supports seamless queue handling, search-based song requests, and efficient audio streaming for uninterrupted playback. Designed for simplicity and reliability, it delivers a fast way for users to play and control music in real time on any server.",
+      "url": "https://github.com/sazy143/BeansBot",
+      "image": "/BeansBot.png"
     }
   ]
 }
