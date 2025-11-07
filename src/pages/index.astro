@@ -52,7 +52,7 @@ const others = projects.others as Array<OtherProject>;
       <div class="hyper-only sticker sticker-cyan"></div>
       <div class="hyper-only sticker sticker-pink"></div>
       <figure class="hero-media">
-        <video src="/membershipHighlights.mp4" autoplay loop>
+        <video src="/membershipHighlights.mp4" loop controls autoplay>
           Your browser does not support the video tag.</video
         >
       </figure>
@@ -172,9 +172,9 @@ const others = projects.others as Array<OtherProject>;
     }
     .proj-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       margin-top: 16px;
     }
     .proj-row.reverse {
@@ -193,7 +193,7 @@ const others = projects.others as Array<OtherProject>;
       align-items: flex-end;
     }
     .media-placeholder {
-      width: 70%;
+      width: 100%;
       max-width: 280px;
       aspect-ratio: 4 / 3;
       border-radius: 10px;
