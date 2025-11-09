@@ -1,9 +1,9 @@
 [
   {
-    "slug": "first-post",
-    "title": "Hello, World",
-    "date": "2025-01-01",
-    "summary": "A sample Markdown post to get started.",
-    "path": "/blog/first-post.html"
+    "slug": "an-experiment-in-vibe-coding",
+    "title": "An experiment in vibe coding",
+    "date": "2025-09-11",
+    "summary": "A deeper look into vibe coding, its benefits, and how it can transform your development process. I explore this concept from my personal experience and provide practical tips for implementation.",
+    "path": "/blog/an-experiment-in-vibe-coding.html"
   }
 ]

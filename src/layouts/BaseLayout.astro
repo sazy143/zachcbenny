@@ -2,8 +2,6 @@
 import {
   SITE_TITLE,
   SITE_DESCRIPTION,
-  SITE_URL,
-  BLOG_HOST,
   DEFAULT_THEME,
   THEMES,
 } from "@config/site";
@@ -40,120 +38,156 @@ const blogHref = "/blog.html";
       rel="stylesheet"
     />
 
-    <script is:inline data-themes={themesJSON} data-default-theme={defaultTheme}>
+    <script is:inline data-themes={themesJSON} data-default-theme={defaultTheme}
+    >
       (function () {
         try {
           var scriptEl = document.currentScript;
-          var themeData = scriptEl ? scriptEl.getAttribute('data-themes') : "[]";
-          var defaultThemeAttr = scriptEl ? scriptEl.getAttribute('data-default-theme') : "";
+          var themeData = scriptEl
+            ? scriptEl.getAttribute("data-themes")
+            : "[]";
+          var defaultThemeAttr = scriptEl
+            ? scriptEl.getAttribute("data-default-theme")
+            : "";
           var THEMES = [];
-          try { THEMES = JSON.parse(themeData || "[]"); } catch (_) {}
+          try {
+            THEMES = JSON.parse(themeData || "[]");
+          } catch (_) {}
           function isTheme(value) {
-            return typeof value === 'string' && THEMES.includes(value);
+            return typeof value === "string" && THEMES.includes(value);
           }
-          var fallbackTheme = isTheme(defaultThemeAttr) ? defaultThemeAttr : (THEMES[0] || 'boring');
+          var fallbackTheme = isTheme(defaultThemeAttr)
+            ? defaultThemeAttr
+            : THEMES[0] || "boring";
           var qp = new URLSearchParams(location.search).get("theme");
           var stored = localStorage.getItem("theme");
-          var theme = isTheme(qp) ? qp : isTheme(stored) ? stored : fallbackTheme;
+          var theme = isTheme(qp)
+            ? qp
+            : isTheme(stored)
+              ? stored
+              : fallbackTheme;
 
           function updateThemeButtons(active) {
             try {
-              var buttons = document.querySelectorAll('[data-theme-button]');
+              var buttons = document.querySelectorAll("[data-theme-button]");
               buttons.forEach(function (button) {
-                var value = button.getAttribute('data-theme-button');
+                var value = button.getAttribute("data-theme-button");
                 if (!isTheme(value)) return;
                 var isActive = value === active;
-                button.setAttribute('data-theme-active', isActive ? 'true' : 'false');
-                button.style.background = isActive ? 'var(--secondary)' : 'var(--primary)';
+                button.setAttribute(
+                  "data-theme-active",
+                  isActive ? "true" : "false"
+                );
+                button.style.background = isActive
+                  ? "var(--secondary)"
+                  : "var(--primary)";
               });
             } catch (_) {}
           }
 
           function setTheme(t) {
             document.documentElement.setAttribute("data-theme", t);
-            localStorage.setItem('theme', t);
+            localStorage.setItem("theme", t);
             updateThemeButtons(t);
-            try { window.dispatchEvent(new CustomEvent('theme-set', { detail: t })); } catch (_) {}
+            try {
+              window.dispatchEvent(new CustomEvent("theme-set", { detail: t }));
+            } catch (_) {}
           }
 
           function bindThemeButtons() {
             try {
-              var buttons = document.querySelectorAll('[data-theme-button]');
+              var buttons = document.querySelectorAll("[data-theme-button]");
               buttons.forEach(function (button) {
-                var value = button.getAttribute('data-theme-button');
-                if (!isTheme(value) || button.getAttribute('data-theme-bound') === 'true') return;
-                button.setAttribute('data-theme-bound', 'true');
-                button.addEventListener('click', function () { setTheme(value); });
+                var value = button.getAttribute("data-theme-button");
+                if (
+                  !isTheme(value) ||
+                  button.getAttribute("data-theme-bound") === "true"
+                )
+                  return;
+                button.setAttribute("data-theme-bound", "true");
+                button.addEventListener("click", function () {
+                  setTheme(value);
+                });
               });
             } catch (_) {}
           }
 
           setTheme(theme);
-          if (document.readyState !== 'loading') {
+          if (document.readyState !== "loading") {
             bindThemeButtons();
           } else {
-            document.addEventListener('DOMContentLoaded', bindThemeButtons, { once: true });
+            document.addEventListener("DOMContentLoaded", bindThemeButtons, {
+              once: true,
+            });
           }
-          window.addEventListener('astro:load', bindThemeButtons);
-          window.addEventListener('astro:page-load', bindThemeButtons);
-          window.addEventListener('astro:after-swap', bindThemeButtons);
+          window.addEventListener("astro:load", bindThemeButtons);
+          window.addEventListener("astro:page-load", bindThemeButtons);
+          window.addEventListener("astro:after-swap", bindThemeButtons);
 
           // hyper parallax scroll + cursor variables
           function setScrollVar() {
-            document.documentElement.style.setProperty('--scrollY', String(window.scrollY || 0));
+            document.documentElement.style.setProperty(
+              "--scrollY",
+              String(window.scrollY || 0)
+            );
           }
           function setMouseVars(e) {
-            var mx = (e.clientX / window.innerWidth) - 0.5;
-            var my = (e.clientY / window.innerHeight) - 0.5;
-            document.documentElement.style.setProperty('--mx', mx.toFixed(3));
-            document.documentElement.style.setProperty('--my', my.toFixed(3));
+            var mx = e.clientX / window.innerWidth - 0.5;
+            var my = e.clientY / window.innerHeight - 0.5;
+            document.documentElement.style.setProperty("--mx", mx.toFixed(3));
+            document.documentElement.style.setProperty("--my", my.toFixed(3));
           }
           setScrollVar();
-          document.documentElement.style.setProperty('--mx', '0');
-          document.documentElement.style.setProperty('--my', '0');
-          window.addEventListener('scroll', setScrollVar, { passive: true });
-          window.addEventListener('mousemove', setMouseVars, { passive: true });
+          document.documentElement.style.setProperty("--mx", "0");
+          document.documentElement.style.setProperty("--my", "0");
+          window.addEventListener("scroll", setScrollVar, { passive: true });
+          window.addEventListener("mousemove", setMouseVars, { passive: true });
 
           // hotkeys 1/2/3 to toggle themes
-          window.addEventListener('keydown', function (e) {
-            if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.isComposing)) return;
-            if (e.key === '1') setTheme(THEMES[0]);
-            if (e.key === '2') setTheme(THEMES[1]);
-            if (e.key === '3') setTheme(THEMES[2]);
+          window.addEventListener("keydown", function (e) {
+            if (
+              e.target &&
+              (e.target.tagName === "INPUT" ||
+                e.target.tagName === "TEXTAREA" ||
+                e.isComposing)
+            )
+              return;
+            if (e.key === "1") setTheme(THEMES[0]);
+            if (e.key === "2") setTheme(THEMES[1]);
+            if (e.key === "3") setTheme(THEMES[2]);
           });
         } catch (e) {}
       })();
     </script>
-</head>
-<body>
-  <div class="site-shell">
-    <header class="container site-header">
-      <nav class="nb-nav">
-        <a href="/" class="nb-brand">zachcbenny</a>
-        <div class="nb-nav-links">
-          <a href="/#about">About</a>
-          <a href="/#projects">Projects</a>
-          <a href={blogHref}>Blog</a>
-          <ThemeToggle client:load />
-        </div>
-      </nav>
-    </header>
-    <main class="container">
-      <slot />
-    </main>
-    <footer class="container" style="padding-top:0;">
-      <p class="muted">&copy; {new Date().getFullYear()} Zach Bentsen</p>
-    </footer>
-  </div>
-  <!-- Hyper theme parallax overlay (decorative) -->
-  <div class="hyper-only hyper-parallax" aria-hidden="true">
-    <div class="stars"></div>
-    <div class="sun"></div>
-    <div class="palm left"></div>
-    <div class="palm right"></div>
-    <div class="scanlines"></div>
-    <div class="vignette"></div>
-  </div>
-</body>
-
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="container site-header">
+        <nav class="nb-nav">
+          <a href="/" class="nb-brand">zachcbenny</a>
+          <div class="nb-nav-links">
+            <a href="/#about">About</a>
+            <a href="/#projects">Projects</a>
+            <a href={blogHref}>Blog</a>
+            <ThemeToggle client:load />
+          </div>
+        </nav>
+      </header>
+      <main class="container">
+        <slot />
+      </main>
+      <footer class="container" style="padding-top:0;">
+        <p class="muted">&copy; {new Date().getFullYear()} Zach Bentsen</p>
+      </footer>
+    </div>
+    <!-- Hyper theme parallax overlay (decorative) -->
+    <div class="hyper-only hyper-parallax" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="sun"></div>
+      <div class="palm left"></div>
+      <div class="palm right"></div>
+      <div class="scanlines"></div>
+      <div class="vignette"></div>
+    </div>
+  </body>
 </html>
